@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global Styles */
+@layer base {
+  * {
+    @apply tracking-pav-body;
+  }
+
+  body {
+    @apply bg-pav-white text-pav-ink font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-pav-headline uppercase;
+  }
+
+  h1 {
+    @apply text-4xl;
+  }
+
+  h2 {
+    @apply text-3xl;
+  }
+
+  h3 {
+    @apply text-2xl;
+  }
+
+  h4 {
+    @apply text-xl;
+  }
+}
+
+/* Component Utilities */
+@layer components {
+  /* PAV Button Styles */
+  .btn-pav-primary {
+    @apply bg-pav-dark-green text-pav-white uppercase font-bold px-6 py-3 rounded-pav-pill tracking-pav-nav hover:opacity-90 transition-opacity duration-200 focus:outline-none focus:ring-2 focus:ring-pav-dark-green focus:ring-offset-2;
+  }
+
+  .btn-pav-secondary {
+    @apply bg-pav-turquoise text-pav-white uppercase font-bold px-6 py-3 rounded-pav-pill tracking-pav-nav hover:opacity-90 transition-opacity duration-200 focus:outline-none focus:ring-2 focus:ring-pav-turquoise focus:ring-offset-2;
+  }
+
+  .btn-pav-outline {
+    @apply border-2 border-pav-dark-green text-pav-dark-green uppercase font-bold px-6 py-3 rounded-pav-pill tracking-pav-nav hover:bg-pav-dark-green hover:text-pav-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-pav-dark-green focus:ring-offset-2;
+  }
+
+  /* PAV Card Styles */
+  .card-pav {
+    @apply bg-pav-soft-grey rounded-pav-card p-6 shadow-sm;
+  }
+
+  .card-pav-white {
+    @apply bg-pav-white rounded-pav-card p-6 shadow-md;
+  }
+
+  /* PAV Badge Styles */
+  .badge-pav-green {
+    @apply bg-pav-dark-green text-pav-white text-xs uppercase font-bold px-3 py-1 rounded-pav-pill;
+  }
+
+  .badge-pav-magenta {
+    @apply bg-pav-magenta text-pav-white text-xs uppercase font-bold px-3 py-1 rounded-pav-pill;
+  }
+
+  .badge-pav-turquoise {
+    @apply bg-pav-turquoise text-pav-white text-xs uppercase font-bold px-3 py-1 rounded-pav-pill;
+  }
+
+  /* PAV Input Styles */
+  .input-pav {
+    @apply w-full px-4 py-3 rounded-pav-card border-2 border-pav-soft-grey focus:border-pav-turquoise focus:outline-none focus:ring-2 focus:ring-pav-turquoise focus:ring-opacity-20 transition-colors duration-200;
+  }
+
+  /* PAV Navigation Styles */
+  .nav-pav {
+    @apply bg-pav-turquoise text-pav-white;
+  }
+
+  .nav-pav-item {
+    @apply text-pav-white uppercase font-medium tracking-pav-nav hover:opacity-80 transition-opacity duration-200;
+  }
+
+  /* Utility Classes */
+  .text-pav-uppercase {
+    @apply uppercase tracking-pav-nav;
+  }
+}
+
+/* Custom Scrollbar */
+@layer utilities {
+  .scrollbar-pav::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .scrollbar-pav::-webkit-scrollbar-track {
+    @apply bg-pav-soft-grey rounded-pav-pill;
+  }
+
+  .scrollbar-pav::-webkit-scrollbar-thumb {
+    @apply bg-pav-turquoise rounded-pav-pill hover:bg-pav-dark-green;
+  }
+}
