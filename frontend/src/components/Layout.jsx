@@ -1,14 +1,25 @@
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Search, Users, LogOut, Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { LayoutDashboard, Search, Users, LogOut, Menu, X, HelpCircle } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import { useAuthStore } from '../hooks/useStore';
 import { authAPI } from '../utils/api';
 import toast from 'react-hot-toast';
+import WelcomeTutorial from './WelcomeTutorial';
 
 function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [showTutorial, setShowTutorial] = useState(false);
   const { user, logout } = useAuthStore();
   const navigate = useNavigate();
+
+  // Check if user has seen the tutorial
+  useEffect(() => {
+    const tutorialCompleted = localStorage.getItem('pav_tutorial_completed');
+    if (!tutorialCompleted) {
+      // Show tutorial after a short delay
+      setTimeout(() => setShowTutorial(true), 500);
+    }
+  }, []);
 
   const handleLogout = async () => {
     try {
@@ -75,7 +86,7 @@ function Layout() {
         </nav>
 
         {/* User Info & Logout */}
-        <div className="p-4 border-t border-white/20">
+        <div className="p-4 border-t border-white/20 space-y-2">
           {sidebarOpen && user && (
             <div className="mb-3 px-2">
               <p className="text-sm text-white/80">Angemeldet als</p>
@@ -85,6 +96,16 @@ function Layout() {
               <p className="text-xs text-white/60 uppercase">{user.rolle}</p>
             </div>
           )}
+          <button
+            onClick={() => setShowTutorial(true)}
+            className="w-full flex items-center gap-3 px-4 py-3 rounded-pav-card hover:bg-white/10 transition-colors"
+            title="Tutorial anzeigen"
+          >
+            <HelpCircle size={20} strokeWidth={2} />
+            {sidebarOpen && (
+              <span className="nav-pav-item font-medium">Tutorial</span>
+            )}
+          </button>
           <button
             onClick={handleLogout}
             className="w-full flex items-center gap-3 px-4 py-3 rounded-pav-card hover:bg-pav-magenta transition-colors"
@@ -112,6 +133,11 @@ function Layout() {
           <Outlet />
         </div>
       </main>
+
+      {/* Welcome Tutorial Modal */}
+      {showTutorial && (
+        <WelcomeTutorial onClose={() => setShowTutorial(false)} />
+      )}
     </div>
   );
 }
